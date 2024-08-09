@@ -9,6 +9,7 @@ import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.controller.SimpleMotorFeedforward;
+import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -64,6 +65,13 @@ public class SwerveModule extends SubsystemBase {
   public SwerveModuleState getState() {
     return new SwerveModuleState(
       driveEncoder.getVelocity(),
+      new Rotation2d(getTurnPosition())
+    );
+  }
+
+  public SwerveModulePosition getModulePosition() {
+    return new SwerveModulePosition(
+      driveEncoder.getPosition(),
       new Rotation2d(getTurnPosition())
     );
   }
