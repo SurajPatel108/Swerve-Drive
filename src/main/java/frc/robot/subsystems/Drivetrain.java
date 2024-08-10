@@ -25,10 +25,10 @@ public class Drivetrain extends SubsystemBase {
   private final SwerveModule BL;
   private final SwerveModule BR;
 
-  private final Translation2d frontLeftLocation = ;  // make constants and add mod location
-  private final Translation2d frontRightLocation = ;
-  private final Translation2d backLeftLocation = ;
-  private final Translation2d backRightLocation = ;
+  private final Translation2d frontLeftLocation = new Translation2d(0.3429, 0.3429);  // make constants and add mod location
+  private final Translation2d frontRightLocation = new Translation2d(0.3429, -0.3429);
+  private final Translation2d backLeftLocation = new Translation2d(-0.3429, 0.3429);
+  private final Translation2d backRightLocation = new Translation2d(-0.3429, -0.3429);
 
   private final SwerveDriveKinematics kinematics = new SwerveDriveKinematics(
     frontLeftLocation, frontRightLocation, backLeftLocation, backRightLocation);
@@ -64,7 +64,7 @@ public class Drivetrain extends SubsystemBase {
         : new ChassisSpeeds(xSpeed, ySpeed, rot)
     );
 
-    SwerveDriveKinematics.desaturateWheelSpeeds(swerveModuleStates, DriveConstants.maxSpeed);
+    SwerveDriveKinematics.desaturateWheelSpeeds(swerveModuleStates, 5.0);
 
     FL.setDesiredState(swerveModuleStates[0]);
     FR.setDesiredState(swerveModuleStates[1]);
